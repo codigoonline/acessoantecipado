@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Em breve - Código Online</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(145deg, #0a0a0a, #0a0a0a);
+      color: #d1d1d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      margin-bottom: 2rem;
+    }
+
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .time-box {
+      background: #2c2c2e;
+      padding: 1rem;
+      border-radius: 1rem;
+      min-width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-box div {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #31E2B6;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      color: #8e8e93;
+      margin-top: 0.25rem;
+    }
+
+    .cta {
+      background: #31E2B6;
+      color: black;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta:hover {
+      background: #39F18F;
+    }
+
+    .urgency {
+      margin-top: 10px;
+      font-size: 0.80rem;
+      color: #636366;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: #636366;
+      width: 100%;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .countdown {
+        gap: 0.75rem;
+      }
+
+      .time-box {
+        padding: 0.75rem;
+        min-width: 70px;
+      }
+
+      .time-box div {
+        font-size: 1.5rem;
+      }
+
+      .cta {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Quer mudar de vida?</h1>
+  <p class="subtitle">Seja um dos primeiros a obter acesso antes de todos e começar a faturar!</p>
+
+  <h2>Tempo até o lançamento oficial:</h2>
+  <div class="countdown" id="countdown">
+    <div class="time-box">
+      <div id="days">00</div>
+      <span class="label">dias</span>
+    </div>
+    <div class="time-box">
+      <div id="hours">00</div>
+      <span class="label">horas</span>
+    </div>
+    <div class="time-box">
+      <div id="minutes">00</div>
+      <span class="label">min</span>
+    </div>
+    <div class="time-box">
+      <div id="seconds">00</div>
+      <span class="label">seg</span>
+    </div>
+  </div>
+
+  <a class="cta" href="https://pay.kirvano.com/90ba5b73-34c0-468d-8756-ef21948e40c6" target="_blank" rel="noopener noreferrer">
+    Quero acesso antecipado
+  </a>
+  <div class="urgency">*Vagas antecipadas limitadas para os 100 primeiros*</div>
+
+  <footer>
+    © 2025 Código Online. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const launchDate = new Date("2025-07-18T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launchDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<p>O site foi lançado!</p>";
+        document.querySelector(".cta").style.display = "none";
+        document.querySelector(".urgency").textContent = "O acesso antecipado encerrou!";
+        return;
+      }
+
+      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
